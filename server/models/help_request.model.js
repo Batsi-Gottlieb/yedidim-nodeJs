@@ -11,6 +11,8 @@ const help_requestSchema = new mongoose.Schema({
     details: String,
     idVolunteering_for_volunteer: Number,
     idVolunteers: Number,
+    idLocation:Number
+
 });
 
 //model

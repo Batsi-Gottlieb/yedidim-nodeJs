@@ -10,14 +10,17 @@ class Repository {
     //אם המתנדב כבר קיים במערכת, תוצג לו תיבת טקסט בה יקליד את המזהה האישי שלו 
     async getById(id) {
         try {
-            const helpRequests = await this.getAll();
-            let result = helpRequests.find(help => help._id == id);
-            if (!result) {
-                result = helpRequests.find(help => help.personal_code == id);
+            const modelName = this.model.modelName;
+            const modelAll = await this.getAll();
+
+            let result = modelAll.find(help => help._id == id);
+
+            if (!result && modelName==='volunteers') {
+                result = modelAll.find(vol => vol.personal_code == id);
                 if (!result) {
                     throw new Error('Volunteer not found');
                 }
-            }
+            }  
             return result;
         } catch (error) {
             throw new Error(`Error fetching help request: ${error.message}`);
@@ -67,20 +70,6 @@ class Repository {
             throw (err + id);
         }
     }
- // אם המתנדב כבר קיים במערכת, תוצג לו תיבת טקסט בה יקליד את המזהה האישי שלו וילחץ על כפתור "אני מתנדב". פעולה זו תעדכן את מצב הבקשה ל "בטיפול" וקוד מתנדב יתמלא בהתאמה.
- async Ivolunteer(personal_code, id_help_requests) {
-    try {
-        await this.model.findByIdAndUpdate(id_help_requests, { idStatus: 82 });
-        const volunteer = await this.volunteer.findOne({ personal_code: personal_code });
-        if (!volunteer) {
-            throw new Error(`Volunteer with personal code ${personal_code} not found.`);
-        }
-        await this.model.findByIdAndUpdate(id_help_requests, { idVolunteers: volunteer._id });
-        return { message: 'Volunteer assigned successfully'+personal_code+'is with request num:'+id_help_requests };
-    } catch (error) {
-        throw new Error(`Error fetching help request: ${error.message}`);
-    }
-}
 
 
     // async getById(id) {
