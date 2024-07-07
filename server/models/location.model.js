@@ -4,10 +4,7 @@ const locationSchema = new mongoose.Schema({
     city: String,
     phone: String,
     districtCode: Number,
-
 });
 
-//model
 const Location = mongoose.model('locations', locationSchema);
-
 export default Location;

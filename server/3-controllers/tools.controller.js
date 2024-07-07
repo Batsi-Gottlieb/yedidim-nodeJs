@@ -1,9 +1,9 @@
 import  Controller  from "./controller.js";
 import service from "../4-services/tool.service.js";
-class Tools extends Controller {
+class ToolsController extends Controller {
     constructor() {
         super(service);
     }
 
    }
-    export default new Tools();
+    export default new ToolsController();

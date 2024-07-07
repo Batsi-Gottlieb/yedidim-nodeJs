@@ -6,9 +6,7 @@ class Help_requestService extends Service {
         debugger
         super(repo);
     }
-    // async getAll(queryParameters) {
-    //     return await this.repo.getAll(queryParameters);
-    // }
+
 }
 
 export default new Help_requestService();
