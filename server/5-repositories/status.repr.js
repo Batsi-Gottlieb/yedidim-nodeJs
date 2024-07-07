@@ -1,5 +1,5 @@
 import Repository from "./repository.js";
-import Status from "../models/ststus.model.js";
+import Status from "../models/status.model.js";
 
 class StatusRepository extends Repository {
     constructor() {
