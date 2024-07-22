@@ -14,8 +14,5 @@ const help_requestSchema = new mongoose.Schema({
     idLocation:Number
 
 });
-
-//model
 const Help_request = mongoose.model('help_requests', help_requestSchema);
-
 export default Help_request;
